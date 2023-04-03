@@ -10,7 +10,11 @@
 
 * Modifica els paràmetres del fitxer [setup.demo.json](setup.demo.json)
 
-    * El "distributionId" l'hauràs d'afegir després de la creació de la distribució de cloudfront 
+    * Instal·la les dependències
+
+            $ npm --prefix ./functions install ./functions
+
+    * El "distributionId" l'hauràs d'afegir després de la creació de la distribució de cloudfront el primer cop que despleguis 
 
     * Un cop modificat
 
@@ -24,11 +28,3 @@
     * **domain**: cloudfront dns
     * **bucket**: el mateix bucket que el definit a setup.demo.json
     * **file**: el mateix fitxer d'índex que el definit a setup.demo.json
-
-* Un cop tinguis el dns de la distribució cloudfront, també has de modificar al fitxer [frontend/index.html](frontend/index.html) la línea
-
-        const cloudfrontDNS = "xxxxxxxxxx.cloudfront.net";
-
-
-
-

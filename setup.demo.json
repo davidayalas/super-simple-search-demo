@@ -1,5 +1,5 @@
 {
-    "serviceName" : "super-simple-search-s3",
+    "serviceName" : "simple-search-s3",
     "indexBucket" : "data",
     "indexFile" : "index.csv",
     "frontendBucket" : "frontend",

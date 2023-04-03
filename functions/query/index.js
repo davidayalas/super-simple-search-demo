@@ -33,7 +33,6 @@ exports.handler = async (event, context, callback) => {
         
     }
     
-    
     let response = {
         status: '200',
         body: "[]",

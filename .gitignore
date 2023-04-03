@@ -5,7 +5,6 @@ yarn*
 .env
 .serverless
 *endpoint.js
-*sp-metadata.xml
 http-server
 *.cert
 !*sample-*

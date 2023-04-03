@@ -48,8 +48,6 @@
 
     <script>
 
-        const cloudfrontDNS = "xxxxxxxxxxx.cloudfront.net";
-
         function search(e){
             let search = searchTxt.value;
             if(!search || (e.keyCode && e.keyCode!==13)){
@@ -59,7 +57,7 @@
             loading.style.display = "block";
             search = search.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-            fetch(`https://${cloudfrontDNS}/search/fulltext/${search}`)
+            fetch(`/search/fulltext/${search}`)
                 .then(response => response.json())
                 .then(data => draw(data));
 
@@ -68,7 +66,7 @@
 
         function clickSearch(params){
             loading.style.display = "block";
-            fetch(`https://${cloudfrontDNS}/search/params/${params}`)
+            fetch(`/search/params/${params}`)
                 .then(response => response.json())
                 .then(data => draw(data));
 
@@ -77,6 +75,11 @@
 
 
         function draw(data){
+            if(data && data[0] && data[0].length===0){
+                alert("No results");
+                loading.style.display = "none";
+                return;
+            }
             tableBody.innerHTML="";
             for(let i=0,z=data.length;i<z;i++){
                 tableBody.insertAdjacentHTML("beforeend", `<tr><td class="column1">${data[i][0]}</td><td class="column2"><a class="query" href="#" data-params="author/${data[i][1]}">${data[i][1]}</a></td><td class="column3"><a class="query" href="#" data-params="genre/${data[i][2]}">${data[i][2]}</a></td><td class="column4"><a class="query" href="#" data-params="publisher/${data[i][3]}">${data[i][3]}</a></td></tr>`);
