@@ -40,17 +40,18 @@ const extend = (toExtend, toApply) => {
       return;
     }
 
-    if(data===null){
-      resolve("[]");
-      return;
-    }
-
     const chunks = [];
     for await (const value of data.Payload) {
       if (value.Records) {
         chunks.push(value.Records.Payload);
       }
     }
+    
+    if(chunks.length===0){
+      resolve("[]");
+      return;
+    }
+
     let records = [];
     if(params.OutputSerialization.CSV){
       records = Buffer.concat(chunks).toString('utf8').replace(/\r/g,"").split(params.OutputSerialization.CSV.RecordDelimiter);
